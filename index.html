@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZenSite | Webs que venden</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Segoe UI,Arial,sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* LOADER */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+#loader span{
+  font-size:42px;
+  font-weight:900;
+  color:#00cfff;
+  animation:pulse 1.4s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:.3}
+  50%{opacity:1}
+}
+
+/* BACKGROUND DESKTOP */
+@media(min-width:769px){
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url('background.png') center/cover no-repeat;
+    z-index:-2;
+  }
+}
+
+/* OVERLAY */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.9));
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 30px;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:600;
+  opacity:.85;
+}
+nav a:hover{opacity:1}
+
+/* GOOGLE TRANSLATE (GLOBAL + DISCRETO) */
+#google_translate_element{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:9999;
+}
+.goog-logo-link,
+.goog-te-gadget span{
+  display:none !important;
+}
+.goog-te-gadget{
+  color:transparent !important;
+}
+.goog-te-combo{
+  background:#000;
+  color:#00cfff;
+  border:1px solid #00cfff;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+/* HERO 3D */
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+  perspective:1200px;
+}
+.hero-inner{
+  transform-style:preserve-3d;
+  animation:float3d 8s ease-in-out infinite;
+}
+@keyframes float3d{
+  0%{transform:rotateX(0) rotateY(0) translateY(0)}
+  50%{transform:rotateX(6deg) rotateY(-6deg) translateY(-18px)}
+  100%{transform:rotateX(0) rotateY(0) translateY(0)}
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,88px);
+  text-shadow:
+    0 10px 30px rgba(0,200,255,.6),
+    0 0 40px rgba(0,200,255,.4);
+  transform:translateZ(60px);
+}
+.hero p{
+  max-width:760px;
+  margin:24px auto;
+  font-size:20px;
+  line-height:1.6;
+  opacity:.95;
+  transform:translateZ(40px);
+}
+
+/* LAPTOP */
+.laptop{
+  margin:40px auto 0;
+  max-width:520px;
+  transform:translateZ(120px);
+}
+.laptop img{
+  width:100%;
+  border-radius:18px;
+  box-shadow:0 40px 80px rgba(0,0,0,.8);
+}
+
+/* SECTION */
+.section{
+  max-width:1100px;
+  margin:auto;
+  padding:100px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.section h2{
+  font-size:36px;
+  margin-bottom:25px;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+.card{
+  background:rgba(255,255,255,.06);
+  padding:32px;
+  border-radius:22px;
+  backdrop-filter:blur(10px);
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px rgba(0,200,255,.45);
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  color:#fff;
+  text-decoration:none;
+  z-index:3000;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero-inner{
+    animation:floatMobile 6s ease-in-out infinite;
+  }
+  @keyframes floatMobile{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TRANSLATOR GLOBAL -->
+<div id="google_translate_element"></div>
+
+<div id="loader"><span>ZenSite</span></div>
+
+<header>
+  <strong>ZenSite</strong>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="demo.html">Demos</a>
+    <a href="planes.html">Servicios</a>
+    <a href="nosotros.html">Nosotros</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>ZenSite</h1>
+    <p>
+      Diseñamos experiencias web profesionales enfocadas en generar confianza,
+      posicionar tu marca y convertir visitas en clientes reales.
+    </p>
+    <div class="laptop">
+      <img src="background.png" alt="ZenSite Web">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>¿Por qué elegir ZenSite?</h2>
+  <div class="cards">
+    <div class="card">🚀 Diseño que convierte visitantes en clientes reales</div>
+    <div class="card">💎 Imagen de marca premium que genera confianza inmediata</div>
+    <div class="card">⚡ Entrega clara, rápida y sin complicaciones</div>
+  </div>
+</section>
+
+<a class="whatsapp" href="https://wa.me/15027942412" target="_blank">💬</a>
+
+<script>
+window.onload=()=>document.getElementById("loader").style.display="none";
+
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.isIntersecting&&x.target.classList.add("visible"))
+});
+document.querySelectorAll(".section").forEach(s=>obs.observe(s));
+
+const hero=document.querySelector(".hero-inner");
+if(window.innerWidth>768){
+  document.addEventListener("mousemove",e=>{
+    const x=(window.innerWidth/2-e.clientX)/40;
+    const y=(window.innerHeight/2-e.clientY)/40;
+    hero.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+  });
+}
+</script>
+
+<!-- GOOGLE TRANSLATE SCRIPT -->
+<script type="text/javascript">
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'es',
+    includedLanguages:'es,en',
+    layout:google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
